@@ -13,8 +13,8 @@ export class LoginComponent {
 
   public title = "Title";
 
-  constructor(private httpClient: ApiHttpService) {
-  }
+  //constructor(private httpClient: ApiHttpService) {
+  // }
 
   public login() {
     let usernameAvailabe = this.checkEmptyAndSetToRed("username");
@@ -27,7 +27,7 @@ export class LoginComponent {
       return;
     }
 
-    this.httpClient.post
+    //this.httpClient.post
   }
 
   private checkEmptyAndSetToRed(elemntId: string) {
