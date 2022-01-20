@@ -1,10 +1,14 @@
-import { Component, NgModule } from '@angular/core';
-import { ApiHttpService } from '../core/services/api-http.services';
-import { stringIsEmpty } from '../util/StringUtil';
+import { Component, Injector, NgModule } from '@angular/core';
+import { Router } from "@angular/router";
+import { ApiCreateTokenRequest } from '../core/services/Requests/ApiTokenRequests';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { ApiRequestHelper } from '../core/services/Requests/ApiRequestHelper';
+import { StringUtil } from '../util/StringUtil';
+import { TokenStorageService } from '../core/services/Requests/token.service';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'login-page',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.less'],
 })
@@ -13,8 +17,10 @@ export class LoginComponent {
 
   public title = "Title";
 
-  //constructor(private httpClient: ApiHttpService) {
-  // }
+  constructor(
+    private httpClient: HttpClient,
+    private tokenService: TokenStorageService,
+    private router: Router) { }
 
   public login() {
     let usernameAvailabe = this.checkEmptyAndSetToRed("username");
@@ -26,9 +32,28 @@ export class LoginComponent {
     else if (!passwordAvailabe) {
       return;
     }
+    let loginRequest: ApiCreateTokenRequest = new ApiCreateTokenRequest(this.httpClient);
 
-    //this.httpClient.post
+    loginRequest.username("test").password("test"); //TODO: use actual values 
+
+
+    loginRequest = ApiRequestHelper.getInstance().executeRequest(loginRequest);
+    const newLocal = loginRequest.getResponsePromise();
+    newLocal?.
+      then((value: HttpResponse<any>) => {
+        const accessToken: string = value.body["access_token"];
+        const refreshToken: string = value.body["refresh_token"];
+
+        this.tokenService.saveToken(accessToken);
+        this.tokenService.saveRefreshToken(refreshToken);
+
+        this.router.navigate(['mainPage']);
+
+      }).catch((value: HttpResponse<any>) => {
+        alert("Benutzername oder Passwort falsch!");
+      });
   }
+
 
   private checkEmptyAndSetToRed(elemntId: string) {
     const element = (document.getElementById(elemntId)) as HTMLInputElement;
@@ -38,7 +63,7 @@ export class LoginComponent {
       return false;
     }
     const elementContent = element.value;
-    if (stringIsEmpty(elementContent)) {
+    if (StringUtil.isEmpty(elementContent)) {
       element.style.borderColor = "red";
       return false;
     }

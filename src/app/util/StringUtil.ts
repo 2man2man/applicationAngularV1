@@ -1,9 +1,13 @@
-export function stringIsEmpty(value: string) {
-    if (!value) {
-        return true;
+
+export class StringUtil {
+
+    public static isEmpty(value: string): boolean {
+        if (!value) {
+            return true;
+        }
+        else if (value === "") {
+            return true;
+        }
+        return false;
     }
-    else if (value === "") {
-        return true;
-    }
-    return false;
 }
