@@ -1,7 +1,11 @@
+:host {
+// display: flex;
+}
 .container {    
-    padding-left: 400px;
-    padding-right: 400px; 
-   padding-top: 180px;
+//     padding-left: 400px;
+//     padding-right: 400px; 
+//    padding-top: 180px;
+padding-bottom: 10px;
       
 }   
 .button {   
@@ -30,7 +34,29 @@
         opacity: 0.7;   
     }   
 
-    Body {  
-        font-family: Calibri, Helvetica, sans-serif;  
-        //background-color: pink;  
-      }  
+    // Body {  
+    //     font-family: Calibri, Helvetica, sans-serif;  
+    //     //background-color: pink;  
+    //   }  
+
+      .context {
+        border: 3px solid #f1f1f1;  
+        background-color: pink;
+        width: 200px; 
+        height: 500px;
+      }
+
+      li.list::marker {
+          color: pink;
+
+      }
+
+      .section {
+          border: none;
+          background-color: pink;
+          font-size: 14px;
+          padding: 10px;
+          border: 1px solid #f1f1f1;  
+          width: 100%;
+        
+      }

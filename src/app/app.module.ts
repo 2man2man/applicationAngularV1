@@ -8,20 +8,26 @@ import { ApiInterceptorAuth } from './core/services/Requests/ApiInterceptorAuth'
 import { ApiInterceptorLog } from './core/services/Requests/ApiInterceptorLog';
 import { MainPageComponent } from './pages/main/main.page';
 import { AppComponent } from './app.component';
-import { LoginAccessGuard } from './login/LoginAccessGuard';
+import { LoginAccessGuard } from './login/LoginAccessGuard'; 
+import { SystemComponent } from './pages/system/system'; 
+import { MitarbeiterComponent } from './pages/mitarbeiter/mitarbeiter'; 
+import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anlegen'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainPageComponent
+    MainPageComponent,
+    SystemComponent,
+    MitarbeiterComponent,
+    MitarbeiterAnlegenComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [
+  providers: [ 
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorAuth, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorLog, multi: true },
     { provide: LoginAccessGuard, useClass: LoginAccessGuard },

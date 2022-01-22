@@ -34,7 +34,7 @@ export class LoginComponent {
     }
     let loginRequest: ApiCreateTokenRequest = new ApiCreateTokenRequest(this.httpClient);
 
-    loginRequest.username("test").password("test"); //TODO: use actual values 
+    loginRequest.username("admin").password("admin"); //TODO: use actual values 
 
 
     loginRequest = ApiRequestHelper.getInstance().executeRequest(loginRequest);

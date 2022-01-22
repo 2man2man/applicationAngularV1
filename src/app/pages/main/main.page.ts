@@ -12,6 +12,17 @@ import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelpe
 export class MainPageComponent {
 
   public title = "MainPage";
+  public menu = [
+    {
+      "punkt": "System"
+    },
+    {
+      "punkt": "Menupunkt Zwei"
+    },
+    {
+      "punkt": "Menupunkt Drei"
+    },
+  ];
 
   constructor(
     private httpClient: HttpClient) { }
