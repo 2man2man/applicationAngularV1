@@ -1,6 +1,7 @@
 <h1>Neuen Mitarbeiter anlegen</h1>
-
-<form (ngSubmit)="save()">
+<div class="body">
+  <contextmenu></contextmenu>  
+  <form class="form" (ngSubmit)="save()">
     <div>
       <label for="name">
         Name:
@@ -14,9 +15,29 @@
       </label>
       <input  class="text" type="text" formControlName="vorname">
     </div>
+    <div>
+      <label for="username">
+        Username:
+      </label>
+      <input  class="text" type="text" formControlName="username">
+    </div>
+    <div>
+      <label for="password">
+        Passwort:
+      </label>
+      <input  class="text" type="text" formControlName="password">
+    </div>
+    <div>
+      <label for="birth">
+        Geburtsdatum:
+      </label>
+      <input  class="text" type="text" formControlName="birth">
+    </div>
   
     <div class="buttons">
         <button class="button" type="submit">Speichern</button>
         <button class="button" >Abbrechen</button>
     </div>
-</form>
+  </form>
+</div>
+

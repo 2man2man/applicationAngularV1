@@ -7,11 +7,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorAuth } from './core/services/Requests/ApiInterceptorAuth';
 import { ApiInterceptorLog } from './core/services/Requests/ApiInterceptorLog';
 import { MainPageComponent } from './pages/main/main.page';
+import { KontextmenuComponent } from './components/contextmenu';
 import { AppComponent } from './app.component';
 import { LoginAccessGuard } from './login/LoginAccessGuard'; 
 import { SystemComponent } from './pages/system/system'; 
 import { MitarbeiterComponent } from './pages/mitarbeiter/mitarbeiter'; 
-import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anlegen'; 
+import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anlegen';  
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anl
     SystemComponent,
     MitarbeiterComponent,
     MitarbeiterAnlegenComponent,
+    KontextmenuComponent,
   ],
   imports: [
     BrowserModule,
