@@ -1,4 +1,7 @@
 <body>
-    <router-outlet></router-outlet>
-    <!-- <app-messages></app-messages> -->
+    <div class="horizontalContainer">
+        <sidemenu *ngIf="showHead"></sidemenu>
+        <router-outlet></router-outlet>
+        <!-- <app-messages></app-messages> -->
+    </div>
 </body>
