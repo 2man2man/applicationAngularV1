@@ -5,7 +5,7 @@ import { ApiAbstractRequest, HttpOptionsWrapper } from "./ApiAbstractRequest";
 
 export class ApiPostRequest extends ApiAbstractRequest {
     public executeImpl(options: HttpOptionsWrapper): Promise<HttpResponse<any>> {
-        let response: Promise<HttpResponse<any>> = this.getHttpClient().post<HttpResponse<any>>(this.buildUrl(), options).toPromise();
+        let response: Promise<HttpResponse<any>> = this.getHttpClient().post<HttpResponse<any>>(this.buildUrl(), this.bodyString, options).toPromise();
         return response;
     }
 }
