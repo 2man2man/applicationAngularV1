@@ -15,12 +15,14 @@ import { MitarbeiterComponent } from './pages/mitarbeiter/mitarbeiter';
 import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anlegen';
 import { SidemenuentryComponent } from './components/sidemenu/sidemenuentry/sidemenuentry.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { DataTableFilterComponent } from './components/data-table/data-table-filter/data-table-filter.component';
 import { MatInputModule } from "@angular/material/input"
 import { MatPaginatorModule } from "@angular/material/paginator"
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
 import { MatSortModule } from "@angular/material/sort"
 import { MatTableModule } from "@angular/material/table"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -36,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SideMenuComponent,
     SidemenuentryComponent,
     DataTableComponent,
+    DataTableFilterComponent
   ],
   imports: [
     BrowserModule,

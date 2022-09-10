@@ -1,4 +1,5 @@
 import { Component, Injector, NgModule } from '@angular/core';
+import { DataTableColumDefinition } from 'src/app/components/data-table/DataTableColumDefinition';
 
 @Component({
   selector: 'mitarbeiter',
@@ -7,12 +8,15 @@ import { Component, Injector, NgModule } from '@angular/core';
 })
 export class MitarbeiterComponent {
 
-  constructor(
+  displayedColumns: DataTableColumDefinition[] = [{ attribute: 'firstName', displayName: "Vorname" },
+  { attribute: 'lastName', displayName: "Nachname" },
+  { attribute: 'userName', displayName: "Benutzername" },];
 
+
+  constructor(
   ) { }
 
   public ngOnInit() {
-
   }
 
 }
