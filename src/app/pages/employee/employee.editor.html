@@ -1,0 +1,29 @@
+<h1>Neuen Mitarbeiter anlegen</h1>
+<div class="bodyWrapper">
+  <div class="employeeAttributes">
+
+    <label>Vorname:</label>
+    <input type="text" placeholder="Rachel" [(ngModel)]="employeeModel.firstName" id="{{firstNameId}}">
+
+
+    <label>Nachname:</label>
+    <input type="text" placeholder="Green" [(ngModel)]="employeeModel.lastName" id="{{lastNameId}}">
+
+    <label>Username:</label>
+    <input type="text" placeholder="RGreen" [(ngModel)]="employeeModel.userName" id="{{userNameId}}">
+
+    <label>Passwort:</label>
+    <input type="text" placeholder="*****" [(ngModel)]="employeeModel.password" id="{{passwordId}}">
+
+    <label>Mandanten:</label>
+    <domainselection-multi [domainClazz]="tenantDomainClazz" (dialogSelection)="handleTenantSelection($event)"
+      [currentSelection]="initialTenants">
+    </domainselection-multi>
+  </div>
+
+  <div class="buttonDiv">
+    <button (click)="save()">Speichern</button>
+    <button (click)="returnToEmployeeView()">Abbrechen</button>
+  </div>
+
+</div>

@@ -11,8 +11,8 @@ import { SideMenuComponent } from './components/sidemenu/sidemenumain/sidemenu';
 import { AppComponent } from './app.component';
 import { LoginAccessGuard } from './login/LoginAccessGuard';
 import { SystemComponent } from './pages/system/system';
-import { MitarbeiterComponent } from './pages/mitarbeiter/mitarbeiter';
-import { MitarbeiterAnlegenComponent } from './pages/mitarbeiter/mitarbeiter.anlegen';
+import { EmployeeComponent } from './pages/employee/employee';
+import { EmployeeEditorComponent } from './pages/employee/employee.editor';
 import { SidemenuentryComponent } from './components/sidemenu/sidemenuentry/sidemenuentry.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { DataTableFilterComponent } from './components/data-table/data-table-filter/data-table-filter.component';
@@ -21,7 +21,15 @@ import { MatPaginatorModule } from "@angular/material/paginator"
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
 import { MatSortModule } from "@angular/material/sort"
 import { MatTableModule } from "@angular/material/table"
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DomainselectionComponent } from './components/simple/domain-selection/multi/domainselection.multi.component';
+import { DomainSelectionMultiDialogComponent } from './components/simple/domain-selection/multi/dialog/domainselection.multi.dialog.component';
 
 
 
@@ -33,14 +41,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     MainPageComponent,
     SystemComponent,
-    MitarbeiterComponent,
-    MitarbeiterAnlegenComponent,
+    EmployeeComponent,
+    EmployeeEditorComponent,
     SideMenuComponent,
     SidemenuentryComponent,
     DataTableComponent,
-    DataTableFilterComponent
+    DataTableFilterComponent,
+    DomainSelectionMultiDialogComponent,
+    DomainselectionComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -48,8 +60,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorAuth, multi: true },

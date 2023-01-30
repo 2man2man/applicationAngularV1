@@ -1,49 +1,36 @@
-div.material-table {
-  margin: 20px;
-  table {
-      width: 100%;
-    }
-    
-    tr.example-detail-row {
-      height: 0;
-    }
-    
-    tr.example-element-row:not(.example-expanded-row):hover {
-      background: whitesmoke;
-    }
-    
-    tr.example-element-row:not(.example-expanded-row):active {
-      background: #efefef;
-    }
-    
-    .example-element-row td {
-      border-bottom-width: 0;
-    }
-    
-    .example-element-detail {
-      overflow: hidden;
-      display: flex;
-    }
-    
-    .example-element-diagram {
-      min-width: 80px;
-      padding: 8px;
-      font-weight: lighter;
-      margin: 8px 0;
-      height: 104px;
-    }
-    
-    .example-element-symbol {
-      font-weight: bold;
-      font-size: 40px;
-      line-height: normal;
-    }
-    
-    .example-element-description {
-      padding: 16px;
-    }
-    
-    .example-element-description-attribution {
-      opacity: 0.5;
-    }
+.mainContentContainer {
+  // display: flex;
+  // position: relative;
+  // flex-wrap: nowrap;
+  // flex-direction: row;
+  // width: calc(100%-500px);
+  // margin-left: 250px;
+  // margin-right: 0;
+  background-color: aqua;
+  padding-top: 10px;
+  z-index: 0;
+  width: 75%;
+}
+
+mat-sidenav {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  // width: 250px;
+  z-index: 1;
+}
+
+.parent{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
+}
+
+.sideMenuWrapper{
+  // width: 25%;
 }

@@ -10,4 +10,8 @@ export class StringUtil {
         }
         return false;
     }
+
+    public static combineWithSeparator(separator: string, strings: string[]): string {
+        return strings.join(separator);
+    }
 }

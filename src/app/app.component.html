@@ -1,7 +1,17 @@
-<body>
-    <div class="horizontalContainer">
-        <sidemenu *ngIf="showHead"></sidemenu>
+<div class="parent">
+
+    <div class="sideMenuWrapper">
+        <mat-sidenav #sidenav mode="side" fixedInViewport="true" opened="true">
+            <sidemenu></sidemenu>
+        </mat-sidenav>
+
+    </div>
+
+    <div class="mainContentContainer">
+        <!-- <body> -->
         <router-outlet></router-outlet>
         <!-- <app-messages></app-messages> -->
+        <!-- </body> -->
     </div>
-</body>
+
+</div>

@@ -1,27 +1,23 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ApiGetRequest } from 'src/app/core/services/Requests/ApiGetRequest';
-import { ApiPostRequest } from 'src/app/core/services/Requests/ApiPostRequest';
-import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
-import { DataTableDataSource } from './DataTableDataSource';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/internal/operators/tap';
-import { DataTableColumDefinition } from './DataTableColumDefinition';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
-import { DataTableFilterDefinition } from './DataTableFilterDefinition';
-import { DOCUMENT } from '@angular/common';
+import { DomainClazzEnum } from 'src/app/core/DomainClazzEnum';
+import { TableViewFactory } from 'src/app/core/tableviewdefinitions/AbstractTableViewDefinition';
 import { StringUtil } from 'src/app/util/StringUtil';
 import { DataTableFilterComponent } from './data-table-filter/data-table-filter.component';
-import { filter } from 'rxjs/operators';
+import { DataTableColumDefinition } from './DataTableColumDefinition';
+import { DataTableDataSource } from './DataTableDataSource';
+import { DataTableFilterDefinition } from './DataTableFilterDefinition';
+
 
 @Component({
-  selector: 'app-data-table',
+  selector: 'data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.less'],
 })
@@ -36,39 +32,58 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   title: string;
 
   @Input()
+  domainClazz: DomainClazzEnum;
+
   displayedColumns: DataTableColumDefinition[];
+  displayedFilters: DataTableFilterDefinition[];
 
-  displayedFilters: DataTableFilterDefinition[] = [{ filterAttribute: 'firstName', displayName: "VornameFilter" },
-  { filterAttribute: 'lastName', displayName: "NachnameFilter" },
-  { filterAttribute: 'userName', displayName: "BenutzernameFilter" }];
+  @Input()
+  rowClickedFunction: (row: any, router: Router) => void;
 
-  @ViewChildren('filter') filterelements: QueryList<DataTableFilterComponent>;
+  @Input()
+  multiSelection: boolean;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Output()
+  selectionEmitter: EventEmitter<any[]> = new EventEmitter();
+
+  selection = new SelectionModel<any>(true, []);
+
+  @ViewChildren('filter')
+  filterelements: QueryList<DataTableFilterComponent>;
+
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+
   pageEvent: PageEvent;
-  pageSize = 2;
-  pageSizeOptions: number[] = [2, 50, 100];
+  pageSize = 10;
+  pageSizeOptions: number[] = [10, 50, 100];
 
   dataSourceImpl: DataTableDataSource;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort)
+  sort: MatSort;
 
-  constructor(private httpClient: HttpClient, @Inject(DOCUMENT) document: Document) {
+  constructor(private httpClient: HttpClient,
+    private router: Router,
+    @Inject(DOCUMENT) document: Document) {
   }
 
   ngOnInit(): void {
-    this.dataSourceImpl = new DataTableDataSource(this.httpClient, "employee/search");
+    let viewProps = new TableViewFactory().create(this.domainClazz);
+    this.displayedColumns = viewProps.getDisplayedColumns();
+    this.displayedFilters = viewProps.getDisplayedFilters();
+    this.dataSourceImpl = new DataTableDataSource(this.httpClient, viewProps.getEndpoint());
   }
+
+
 
   ngAfterViewInit(): void {
 
     this.paginator.page.pipe(tap(() => this.load()))
       .subscribe();
-
     this.load();
   }
 
   load() {
-
     let filterMap = new Map<string, any>();
 
     for (const filterElem of this.filterelements) {
@@ -108,10 +123,56 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   getDisplayedColumns(): string[] {
     let result: string[] = [];
+
+    if (this.multiSelection) {
+      result.push("select");
+    }
+
     for (let entry of this.displayedColumns) {
       result.push(entry.attribute);
     }
     return result;
   }
+
+
+  rowClicked(row: any) {
+    if (this.rowClickedFunction) {
+      this.rowClickedFunction(row, this.router);
+    }
+  }
+
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSourceImpl.totalResults; //TODO check this for dialogs with multiple pages
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ? this.selection.clear() : this.dataSourceImpl.currentItems.forEach(row => this.selection.select(row));
+    this.outputSelectionChanges();
+  }
+
+  handleRowSelection(event: MatCheckboxChange, row: any): void {
+    if (!event) {
+      return;
+    }
+    if (event.checked) {
+      this.selection.select(row);
+    }
+    else {
+      this.selection.deselect(row);
+    }
+    this.outputSelectionChanges();
+  }
+
+  outputSelectionChanges(): void {
+    this.selectionEmitter.emit(this.selection.selected);
+  }
+
+
+
+
+
 }
 

@@ -1,0 +1,9 @@
+<div class="mainBody">
+    <div class="actionDiv">
+        <h1>Mitarbeiter</h1>
+        <button [routerLink]="['/employee/editor']">Mitarbeiter anlegen</button>
+    </div>
+    <div class="tableDiv">
+        <data-table [domainClazz]="domainClazz" [rowClickedFunction]="handleRowClick"></data-table>
+    </div>
+</div>

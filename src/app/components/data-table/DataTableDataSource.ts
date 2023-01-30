@@ -15,6 +15,7 @@ export class DataTableDataSource implements DataSource<any> {
 
     public loading$ = this.loadingSubject.asObservable();
     public totalResults: number = 0;
+    public currentItems: any[] = [];
 
     constructor(private httpClient: HttpClient,
         endpoint: string
@@ -62,8 +63,10 @@ export class DataTableDataSource implements DataSource<any> {
         const newLocal = request.getResponsePromise();
         newLocal?.then((value: HttpResponse<any>) => {
 
+            let results = value.body["results"];
+            this.currentItems = results;
             this.totalResults = value.body["totalResults"];
-            this.lessonsSubject.next(value.body["results"]);
+            this.lessonsSubject.next(results);
 
         }).catch((value: HttpResponse<any>) => {
             console.log(value)
