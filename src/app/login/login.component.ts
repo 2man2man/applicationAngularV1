@@ -5,6 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiRequestHelper } from '../core/services/Requests/ApiRequestHelper';
 import { StringUtil } from '../util/StringUtil';
 import { TokenStorageService } from '../core/services/Requests/token.service';
+import { SessionService } from '../core/services/session.service';
 
 
 @Component({
@@ -20,9 +21,11 @@ export class LoginComponent {
   constructor(
     private httpClient: HttpClient,
     private tokenService: TokenStorageService,
+    private sessionService: SessionService,
     private router: Router) { }
 
   public login() {
+
     let usernameAvailabe = this.checkEmptyAndSetToRed("username");
     let passwordAvailabe = this.checkEmptyAndSetToRed("password");
 
@@ -48,6 +51,7 @@ export class LoginComponent {
         this.tokenService.saveRefreshToken(refreshToken);
 
         this.router.navigate(['mainPage']);
+        this.sessionService.refresh();
 
       }).catch((value: HttpResponse<any>) => {
         alert("Benutzername oder Passwort falsch!");
@@ -71,4 +75,7 @@ export class LoginComponent {
     return true;
   }
 }
+
+
+
 

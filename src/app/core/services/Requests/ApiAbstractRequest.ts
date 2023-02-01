@@ -54,8 +54,8 @@ export abstract class ApiAbstractRequest {
     }
 
 
-    public getResponsePromise(): Promise<HttpResponse<any>> | undefined {
-        return this.response;
+    public getResponsePromise(): Promise<HttpResponse<any>> {
+        return this.response!;
     }
 
     public body(body: string): ApiAbstractRequest {

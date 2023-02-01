@@ -1,0 +1,18 @@
+<h1>Mandant</h1>
+<div class="bodyWrapper">
+  <div class="employeeAttributes">
+
+    <label>Number:</label>
+    <input type="text" placeholder="M1" [(ngModel)]="model.number" id="{{numberId}}">
+
+
+    <label>Name:</label>
+    <input type="text" placeholder="Mandant" [(ngModel)]="model.name" id="{{nameId}}">
+
+
+    <div class="buttonDiv">
+      <button (click)="save()">Save</button>
+      <button (click)="returnToMainView()">Cancel</button>
+    </div>
+
+  </div>

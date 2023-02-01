@@ -30,6 +30,11 @@ export class EmployeeModel {
         }
     }
 
+    public toUpdateJson(): any {
+        return this.toCreateJson();
+    }
+
+
     public static createEmtpy(): EmployeeModel {
         let employee: EmployeeModel = new EmployeeModel();
         return employee;
@@ -59,6 +64,8 @@ export class EmployeeModel {
         model.userName = json["userName"];
 
         let tenantNumbers: string[] = json["tenants"];
+        tenantNumbers.sort();
+
         for (let tenantNumber of tenantNumbers) {
             let tenantModel = TenantModel.createEmtpy();
             await TenantModel.fillDataByNumber(tenantNumber, tenantModel, httpClient)

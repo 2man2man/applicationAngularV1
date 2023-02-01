@@ -51,7 +51,9 @@ export class DomainselectionComponent implements OnInit, OnChanges {
   }
 
   private updateCurrentSelectionString(): void {
-    this.currentSelctionString = this.cellView.arrayToString(this.currentSelection);
+    if (this.currentSelection) {
+      this.currentSelctionString = this.cellView.arrayToString(this.currentSelection);
+    }
   }
 
   ngOnChanges() {

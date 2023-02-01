@@ -6,6 +6,8 @@ import { MainPageComponent } from './pages/main/main.page';
 import { SystemComponent } from './pages/system/system';
 import { EmployeeComponent } from './pages/employee/employee';
 import { EmployeeEditorComponent } from './pages/employee/employee.editor';
+import { TenantComponent } from './pages/system/tenant/tenant.view';
+import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'mainPage' },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'system', component: SystemComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: 'employee', component: EmployeeComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: 'employee/editor', component: EmployeeEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: 'tenant', component: TenantComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: 'tenant/editor', component: TenantEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
 ];
 
 @NgModule({

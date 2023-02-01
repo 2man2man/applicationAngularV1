@@ -30,6 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DomainselectionComponent } from './components/simple/domain-selection/multi/domainselection.multi.component';
 import { DomainSelectionMultiDialogComponent } from './components/simple/domain-selection/multi/dialog/domainselection.multi.dialog.component';
+import { TenantComponent } from './pages/system/tenant/tenant.view';
+import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
 
 
 
@@ -43,6 +45,8 @@ import { DomainSelectionMultiDialogComponent } from './components/simple/domain-
     SystemComponent,
     EmployeeComponent,
     EmployeeEditorComponent,
+    TenantComponent,
+    TenantEditorComponent,
     SideMenuComponent,
     SidemenuentryComponent,
     DataTableComponent,

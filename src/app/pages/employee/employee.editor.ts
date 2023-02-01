@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomainClazzEnum } from 'src/app/core/DomainClazzEnum';
 import { ApiGetRequest } from 'src/app/core/services/Requests/ApiGetRequest';
 import { ApiPostRequest } from 'src/app/core/services/Requests/ApiPostRequest';
+import { ApiPutRequest } from 'src/app/core/services/Requests/ApiPutRequest';
 import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
 import { GuiUtil } from 'src/app/util/GuiUtil';
 import { StringUtil } from 'src/app/util/StringUtil';
@@ -22,7 +23,6 @@ export class EmployeeEditorComponent {
   readonly lastNameId: string = "EmployeeEditorComponent_lastNameId";
   readonly userNameId: string = "EmployeeEditorComponent_userNameId";
   readonly passwordId: string = "EmployeeEditorComponent_passwordId";
-  readonly dateOfBirthId: string = "EmployeeEditorComponent_dateOfBirthId";
 
   readonly tenantDomainClazz: DomainClazzEnum = DomainClazzEnum.Tenant;
 
@@ -42,14 +42,24 @@ export class EmployeeEditorComponent {
     if (this.idExistingEmployee > 0) {
       this.loadExistingEmployee();
     }
-    console.log("end of onInit reached!");
   }
 
   private loadExistingEmployee() {
-    EmployeeModel.fillDataById(this.idExistingEmployee, this.employeeModel, this.httpClient)
-      .then((result: EmployeeModel) => {
-        this.initialTenants = result.tenants.slice();
+
+    Promise.resolve()
+      .then(() => {
+        return EmployeeModel.fillDataById(this.idExistingEmployee, this.employeeModel, this.httpClient);
       })
+      .then((value: EmployeeModel) => {
+        this.initialTenants = value.tenants.slice();
+      })
+      .catch((error) => {
+        let errorMessage = "Employee could not be loaded: " + error;
+        console.log(errorMessage);
+        alert(errorMessage);
+      });
+
+
   }
 
   handleTenantSelection(data: any[]): void {
@@ -66,54 +76,108 @@ export class EmployeeEditorComponent {
 
 
   public save(): void {
-    if (!this.checkInput()) {
-      return;
-    }
-    this.sendRequest();
+
+    Promise.resolve()
+      .then(() => { return this.checkRequiredFields() })
+      .then((value) => { return this.checkUserNameUnique() })
+      .then((value) => { return this.sendRequest() })
+      .then((value) => { return this.returnToEmployeeView() })
+      .catch(error => {
+        console.log(error)
+      });
   }
-  private checkInput(): boolean {
 
-    let check = true;
 
+  private sendRequest(): Promise<any> {
+    if (this.isUpdate()) {
+      return this.updateEmployee();
+    }
+    else {
+      return this.createEmployee();
+    }
+  }
+
+  private checkRequiredFields(): boolean {
+
+    let missingFields: string[] = [];
     if (StringUtil.isEmpty(this.employeeModel.firstName)) {
+      missingFields.push("firstName");
       GuiUtil.setBorderToRed(this.firstNameId);
-      check = false
     }
     if (StringUtil.isEmpty(this.employeeModel.lastName)) {
+      missingFields.push("lastName");
       GuiUtil.setBorderToRed(this.lastNameId);
-      check = false
     }
     if (StringUtil.isEmpty(this.employeeModel.userName)) {
+      missingFields.push("userName");
       GuiUtil.setBorderToRed(this.userNameId);
-      check = false
     }
-    if (StringUtil.isEmpty(this.employeeModel.password)) {
+    if (!this.isUpdate() && StringUtil.isEmpty(this.employeeModel.password)) {
+      missingFields.push("password");
       GuiUtil.setBorderToRed(this.passwordId);
-      check = false
+    }
+    if (missingFields.length == 0) {
+      return true;
+    }
+    throw new Error("Some required fields are missing: " + StringUtil.combineWithSeparator(", ", missingFields));
+  }
+
+  private checkUserNameUnique(): Promise<any> {
+
+    const currentUserName = this.employeeModel.userName;
+    if (StringUtil.isEmpty(this.employeeModel.userName)) {
+      return Promise.resolve();
     }
 
-    return check;
+    let request: ApiGetRequest = new ApiGetRequest(this.httpClient);
+    request.endpoint("employee/getByUserName/" + currentUserName);
+    request = ApiRequestHelper.getInstance().executeRequest(request);
+    return request.getResponsePromise()
+      .then((value: HttpResponse<any>) => {
+        const exisingEmployeeId = value.body["id"];
+        if (exisingEmployeeId == this.idExistingEmployee) {
+          return;
+        }
+        GuiUtil.setBorderToRed(this.userNameId); //TODO: add message for user, that usename is not unique
+        throw new Error("Username is not unique");
+      },
+        (reason) => {
+          console.log(reason);
+        });
+  }
+
+
+
+
+  private isUpdate(): boolean {
+    if (!this.idExistingEmployee) {
+      return false;
+    }
+    else if (this.idExistingEmployee <= 0) {
+      return false;
+    }
+    return true;
   }
 
   public returnToEmployeeView(): void {
     this.router.navigate(['employee']);
   }
 
-  private sendRequest(): void {
+  private createEmployee(): Promise<HttpResponse<any>> {
     let request: ApiPostRequest = new ApiPostRequest(this.httpClient);
     request.endpoint("employee");
     request.body(JSON.stringify(this.employeeModel.toCreateJson()));
     request = ApiRequestHelper.getInstance().executeRequest(request);
-
-    request.getResponsePromise()?.
-      then((value: HttpResponse<any>) => {
-        this.returnToEmployeeView();
-      }).catch((value: HttpResponse<any>) => {
-        alert("That failed"); //TODO: show better error dialog
-      });
+    return request.getResponsePromise();
   }
 
-
+  private updateEmployee(): Promise<HttpResponse<any>> {
+    let request: ApiPutRequest = new ApiPutRequest(this.httpClient);
+    request.endpoint("employee/updateById/" + this.idExistingEmployee);
+    request.body(JSON.stringify(this.employeeModel.toUpdateJson()));
+    request = ApiRequestHelper.getInstance().executeRequest(request);
+    return request.getResponsePromise();
+  }
 
 }
 
