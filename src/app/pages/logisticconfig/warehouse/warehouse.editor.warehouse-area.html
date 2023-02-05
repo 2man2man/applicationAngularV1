@@ -1,0 +1,10 @@
+<div class="mainBody">
+  <div class="actionDiv">
+    <button (click)="openDialog(0)">Create new warehouse area</button>
+    <!-- TODO -->
+  </div>
+  <div class="tableDiv">
+    <data-table [domainClazz]="domainClazz" [fixedFilters]="fixedFilters"
+      [rowClickedFunction]="handleRowClick.bind(this)"></data-table>
+  </div>
+</div>

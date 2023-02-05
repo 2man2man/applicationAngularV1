@@ -13,8 +13,14 @@ import { SideMenuEntryInterface } from '../SideMenuEntryInterface';
 })
 export class SideMenuComponent implements OnInit {
 
-  systemEntryVisible: boolean = false;
 
+  logisticConfigEntryVisible: boolean = false;
+  logisticConfigEntry: SideMenuEntryInterface = {
+    routerLink: "logisticConfig",
+    displayName: "Logistic configuration"
+  }
+
+  systemEntryVisible: boolean = false;
   systemEntry: SideMenuEntryInterface = {
     routerLink: "system",
     displayName: "System"
@@ -27,6 +33,14 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleSystemConfigPrivilege();
+    this.handleLogisticConfigPrivilege();
+  }
+
+  private handleLogisticConfigPrivilege() {
+    this.logisticConfigEntryVisible = this.sessionService.privilegeLogisticConfig.getValue();
+    this.sessionService.privilegeLogisticConfigObservable.subscribe((value: boolean) => {
+      this.logisticConfigEntryVisible = value;
+    });
   }
 
   private handleSystemConfigPrivilege() {

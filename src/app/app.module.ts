@@ -32,6 +32,13 @@ import { DomainselectionComponent } from './components/simple/domain-selection/m
 import { DomainSelectionMultiDialogComponent } from './components/simple/domain-selection/multi/dialog/domainselection.multi.dialog.component';
 import { TenantComponent } from './pages/system/tenant/tenant.view';
 import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
+import { LogisticConfigMainViewComponent } from './pages/logisticconfig/logistic.config.mainview';
+import { WarehouseViewComponent } from './pages/logisticconfig/warehouse/warehouse.view';
+import { WarehouseEditorComponent } from './pages/logisticconfig/warehouse/warehouse.editor';
+import { MatTabsModule } from '@angular/material/tabs';
+import { WarehouseEditorHeadDataComponent } from './pages/logisticconfig/warehouse/warehouse.editor.head-data';
+import { WarehouseEditorWarehouseAreaComponent } from './pages/logisticconfig/warehouse/warehouse.editor.warehouse-area';
+import { WarehouseAreaEditorComponent } from './pages/logisticconfig/warehouse/warehouse-area/warehouse-area.editor';
 
 
 
@@ -52,7 +59,13 @@ import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
     DataTableComponent,
     DataTableFilterComponent,
     DomainSelectionMultiDialogComponent,
-    DomainselectionComponent
+    DomainselectionComponent,
+    LogisticConfigMainViewComponent,
+    WarehouseViewComponent,
+    WarehouseEditorComponent,
+    WarehouseEditorHeadDataComponent,
+    WarehouseEditorWarehouseAreaComponent,
+    WarehouseAreaEditorComponent
   ],
   imports: [
     FormsModule,
@@ -70,7 +83,8 @@ import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
     MatSidenavModule,
     MatIconModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorAuth, multi: true },

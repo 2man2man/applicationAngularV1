@@ -14,6 +14,7 @@ import { DataTableFilterComponent } from './data-table-filter/data-table-filter.
 import { DataTableColumDefinition } from './DataTableColumDefinition';
 import { DataTableDataSource } from './DataTableDataSource';
 import { DataTableFilterDefinition } from './DataTableFilterDefinition';
+import { DataTableFixedFilterDefinition } from './DataTableFixedFilterDefinition';
 
 
 @Component({
@@ -36,6 +37,9 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   displayedColumns: DataTableColumDefinition[];
   displayedFilters: DataTableFilterDefinition[];
+
+  @Input()
+  fixedFilters: DataTableFixedFilterDefinition[];
 
   @Input()
   rowClickedFunction: (row: any, router: Router) => void;
@@ -83,17 +87,22 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     this.load();
   }
 
-  load() {
+  public load() {
     let filterMap = new Map<string, any>();
 
     for (const filterElem of this.filterelements) {
-
       const filterAttribute = filterElem.filterAttribute;
       const filterValue = filterElem.getFilterValue();
       if (StringUtil.isEmpty(filterValue)) {
         continue;
       }
       filterMap.set(filterAttribute, filterValue);
+    }
+
+    if (this.fixedFilters && this.fixedFilters.length > 0) {
+      for (const filterElem of this.fixedFilters) {
+        filterMap.set(filterElem.filterAttribute, filterElem.getValue());
+      }
     }
 
     this.dataSourceImpl.load(this.getPageIndex(), this.getPageSize(), filterMap);

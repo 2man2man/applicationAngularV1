@@ -1,4 +1,6 @@
 export enum DomainClazzEnum {
     Tenant,
-    Employee
+    Employee,
+    Warehouse,
+    WarehouseArea
 }

@@ -8,6 +8,9 @@ import { EmployeeComponent } from './pages/employee/employee';
 import { EmployeeEditorComponent } from './pages/employee/employee.editor';
 import { TenantComponent } from './pages/system/tenant/tenant.view';
 import { TenantEditorComponent } from './pages/system/tenant/tenant.editor';
+import { LogisticConfigMainViewComponent } from './pages/logisticconfig/logistic.config.mainview';
+import { WarehouseViewComponent } from './pages/logisticconfig/warehouse/warehouse.view';
+import { WarehouseEditorComponent } from './pages/logisticconfig/warehouse/warehouse.editor';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'mainPage' },
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'employee/editor', component: EmployeeEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: 'tenant', component: TenantComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: 'tenant/editor', component: TenantEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: 'logisticConfig', component: LogisticConfigMainViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: 'logisticConfig/warehouse', component: WarehouseViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: 'logisticConfig/warehouse/editor', component: WarehouseEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
 ];
 
 @NgModule({

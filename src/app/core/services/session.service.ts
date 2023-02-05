@@ -10,9 +10,11 @@ import { ApiRequestHelper } from './Requests/ApiRequestHelper';
 )
 export class SessionService {
 
-
     privilegeSystemConfig = new BehaviorSubject<boolean>(false);
     privilegeSystemConfigObservable = this.privilegeSystemConfig.asObservable();
+
+    privilegeLogisticConfig = new BehaviorSubject<boolean>(false);
+    privilegeLogisticConfigObservable = this.privilegeLogisticConfig.asObservable();
 
 
     constructor(private httpClient: HttpClient) {
@@ -37,6 +39,9 @@ export class SessionService {
 
         const fetchedSystemConfigurationPrivilege: boolean = resposne.body["systemConfigurationPrivilege"]
         this.privilegeSystemConfig.next(fetchedSystemConfigurationPrivilege);
+
+        const fetchedLogisticConfigurationPrivilege: boolean = resposne.body["logisticConfigurationPrivilege"]
+        this.privilegeLogisticConfig.next(fetchedLogisticConfigurationPrivilege);
     }
 
 }

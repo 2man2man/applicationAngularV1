@@ -3,6 +3,8 @@ import { DataTableFilterDefinition } from "src/app/components/data-table/DataTab
 import { DomainClazzEnum } from "../DomainClazzEnum";
 import { EmployeeTableView } from "./EmployeeTableView";
 import { TenantTableView } from "./TenantTableView";
+import { WarehouseAreaTableView } from "./WarehouseAreaTableView";
+import { WarehouseTableView } from "./WarehouseTableView";
 
 export interface TableViewDefinition {
 
@@ -19,6 +21,12 @@ export class TableViewFactory {
         }
         else if (clazz == DomainClazzEnum.Employee) {
             return new EmployeeTableView();
+        }
+        else if (clazz == DomainClazzEnum.Warehouse) {
+            return new WarehouseTableView();
+        }
+        else if (clazz == DomainClazzEnum.WarehouseArea) {
+            return new WarehouseAreaTableView();
         }
         else {
             throw new Error(clazz + " is not supported!");
