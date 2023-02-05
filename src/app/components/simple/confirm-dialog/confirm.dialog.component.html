@@ -1,4 +1,6 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <p>{{data.text}}</p>
-<button (click)="confirm()">Confirm</button>
-<button (click)="cancel()">Cancel</button>
+<div class="btn">
+    <button class="confirm" (click)="confirm()"> <i class="fa-solid fa-check"></i> Confirm</button>
+    <button class="cancel" (click)="cancel()"> <i class="fa-solid fa-xmark"></i> Cancel</button>
+</div>

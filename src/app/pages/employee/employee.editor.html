@@ -1,4 +1,5 @@
 <h1>Mitarbeiter</h1>
+
 <div class="bodyWrapper">
   <div class="employeeAttributes">
 
@@ -22,8 +23,8 @@
   </div>
 
   <div class="buttonDiv">
-    <button (click)="save()">Speichern</button>
-    <button (click)="returnToEmployeeView()">Abbrechen</button>
+    <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
   </div>
+
 
 </div>

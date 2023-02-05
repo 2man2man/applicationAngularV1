@@ -1,7 +1,7 @@
 <div class="mainBody">
     <div class="actionDiv">
         <h1>Tenant</h1>
-        <button [routerLink]="['/tenant/editor']">Create new tenant</button>
+        <button [routerLink]="['/tenant/editor']"> <i class="fa-solid fa-plus"></i> Create new tenant</button>
     </div>
     <div class="tableDiv">
         <data-table [domainClazz]="domainClazz" [rowClickedFunction]="handleRowClick"></data-table>

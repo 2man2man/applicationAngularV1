@@ -11,8 +11,7 @@
 
 
     <div class="buttonDiv">
-      <button (click)="save()">Save</button>
-      <button (click)="returnToMainView()">Cancel</button>
+      <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
     </div>
 
   </div>
