@@ -10,6 +10,8 @@ export class CancelConfirmComponent {
 
     @Input() saveFunction: () => void;
 
+    @Input() cancelFunction: () => void;
+
 
     constructor(
         private location: Location
@@ -22,8 +24,12 @@ export class CancelConfirmComponent {
         this.saveFunction();
     }
 
-    back(): void {
-        this.location.back();
+    public cancel(): void {
+        if (this.cancelFunction) {
+            this.cancelFunction();
+        } else {
+            this.location.back();
+        }
     }
 
 }

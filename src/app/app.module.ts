@@ -40,6 +40,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { WarehouseEditorHeadDataComponent } from './pages/logisticconfig/warehouse/warehouse.editor.head-data';
 import { WarehouseEditorWarehouseAreaComponent } from './pages/logisticconfig/warehouse/warehouse.editor.warehouse-area';
 import { WarehouseAreaEditorComponent } from './pages/logisticconfig/warehouse/warehouse-area/warehouse-area.editor';
+import { FixedLocationTypeViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.view';
+import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.editor';
 
 
 
@@ -68,6 +70,8 @@ import { WarehouseAreaEditorComponent } from './pages/logisticconfig/warehouse/w
     WarehouseEditorWarehouseAreaComponent,
     WarehouseAreaEditorComponent,
     CancelConfirmComponent,
+    FixedLocationTypeViewComponent,
+    FixedLocationTypeEditorComponent
   ],
   imports: [
     FormsModule,

@@ -1,4 +1,5 @@
 import { Component, Injector, NgModule } from '@angular/core';
+import { FixedLocationTypeViewComponent } from './warehouse/fixedlocation/type/fixedlocation.type.view';
 
 @Component({
   selector: 'logistic-config-mainview',
@@ -7,9 +8,12 @@ import { Component, Injector, NgModule } from '@angular/core';
 })
 export class LogisticConfigMainViewComponent {
 
-  constructor(
+  locationTypeViewUrl: string;
 
-  ) { }
+  constructor(
+  ) {
+    this.locationTypeViewUrl = "/" + FixedLocationTypeViewComponent.PATH;
+  }
 
   public ngOnInit() {
   }
