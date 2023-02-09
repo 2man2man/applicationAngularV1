@@ -17,9 +17,9 @@
         class="mat-elevation-z8">
 
 
-        <ng-container *ngIf="multiSelection" matColumnDef="select">
+        <ng-container *ngIf="multiSelection || singleSelection" matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
+                <mat-checkbox *ngIf="multiSelection" (change)=" $event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()">
                 </mat-checkbox>

@@ -42,6 +42,11 @@ import { WarehouseEditorWarehouseAreaComponent } from './pages/logisticconfig/wa
 import { WarehouseAreaEditorComponent } from './pages/logisticconfig/warehouse/warehouse-area/warehouse-area.editor';
 import { FixedLocationTypeViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.view';
 import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.editor';
+import { FixedLocationViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/fixedlocation.view';
+import { FixedLocationViewBatchActionComponent } from './pages/logisticconfig/warehouse/fixedlocation/fixedlocation.view.batch.action';
+import { DomainSelectionSingleDialogComponent } from './components/simple/domain-selection/single/dialog/domainselection.dialog.component';
+import { DomainSelectionSingleComponent } from './components/simple/domain-selection/single/domainselection.component';
+import { ProgressMonitorComponent } from './components/simple/progress/progress.monitor/progress.monitor.infinite.component';
 
 
 
@@ -63,6 +68,8 @@ import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehou
     DataTableFilterComponent,
     DomainSelectionMultiDialogComponent,
     DomainselectionComponent,
+    DomainSelectionSingleComponent,
+    DomainSelectionSingleDialogComponent,
     LogisticConfigMainViewComponent,
     WarehouseViewComponent,
     WarehouseEditorComponent,
@@ -71,7 +78,10 @@ import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehou
     WarehouseAreaEditorComponent,
     CancelConfirmComponent,
     FixedLocationTypeViewComponent,
-    FixedLocationTypeEditorComponent
+    FixedLocationTypeEditorComponent,
+    FixedLocationViewComponent,
+    FixedLocationViewBatchActionComponent,
+    ProgressMonitorComponent,
   ],
   imports: [
     FormsModule,

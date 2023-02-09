@@ -1,0 +1,5 @@
+<data-table title='Select' [singleSelection]="true" [domainClazz]=passedData.domainClazz
+    (selectionEmitter)="updateCurrentSelection($event)">
+</data-table>
+<button (click)="confirm()">Confirm</button>
+<button (click)="cancel()">Cancel</button>

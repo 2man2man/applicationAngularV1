@@ -73,9 +73,4 @@ export class TenantModel {
     }
 
 
-    public static parseFromJson(json: any): TenantModel {
-        let result: TenantModel = new TenantModel();
-        //TODO
-        return result;
-    }
 }

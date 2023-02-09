@@ -1,0 +1,47 @@
+<div class="bodyWrapper">
+    <div class="fourColumnLayout">
+        <label>Mode:</label>
+        <select [(ngModel)]="model.mode" style="grid-column: span 3;" id={{modeId}}>
+            <option *ngFor="let element of batchActionModes" [value]="element">{{batchActionModeEnum[element]}}</option>
+        </select>
+
+        <label>Warehouse area:</label>
+        <domainselection [domainClazz]="domainClazzWarehouseArea"
+            (dialogSelection)="handleWarehouseAreaSelection($event)" style="grid-column: span 3;"
+            id="{{warehouseAreaId}}"></domainselection>
+
+        <label>Location type:</label>
+        <domainselection [domainClazz]="domainClazzFixedLocationType"
+            (dialogSelection)="handleFixedLocationTypeSelection($event)" style="grid-column: span 3;"
+            id="{{locationTypeId}}"></domainselection>
+
+
+        <label>From Row:</label>
+        <input type="number" placeholder="10" [(ngModel)]="model.fromRow" id="{{fromRowId}}">
+
+        <label>To Row:</label>
+        <input type="number" placeholder="20" [(ngModel)]="model.toRow" id="{{toRowId}}">
+
+        <label>From column:</label>
+        <input type="number" placeholder="1" [(ngModel)]="model.fromColumn" id="{{fromColumnId}}">
+
+        <label>To column:</label>
+        <input type="number" placeholder="2" [(ngModel)]="model.toColumn" id="{{toColumnId}}">
+
+        <label>From level:</label>
+        <input type="number" placeholder="1" [(ngModel)]="model.fromLevel" id="{{fromLevelId}}">
+
+        <label>To level:</label>
+        <input type="number" placeholder="5" [(ngModel)]="model.toLevel" id="{{toLevelId}}">
+
+        <label>From fragment:</label>
+        <input type="number" placeholder="1" [(ngModel)]="model.fromFragment" id="{{fromFragmentId}}">
+
+        <label>To fragment:</label>
+        <input type="number" placeholder="10" [(ngModel)]="model.toFragment" id="{{toFragmentId}}">
+    </div>
+
+    <button class="confirm" (click)="save()"> <i class="fa-solid fa-check"></i>Execute</button>
+
+
+</div>

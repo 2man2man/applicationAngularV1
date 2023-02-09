@@ -1,6 +1,11 @@
 
 export class StringUtil {
 
+    public static getRandom(): string {
+        return Math.random().toString(36);
+    }
+
+
     public static isEmpty(value: string | undefined): boolean {
         if (!value) {
             return true;

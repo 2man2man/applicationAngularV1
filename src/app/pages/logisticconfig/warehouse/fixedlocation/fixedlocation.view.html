@@ -1,0 +1,17 @@
+<div class="mainBody">
+    <div class="actionDiv">
+        <h1>Fixed location</h1>
+        <button (click)="toggleBatchAction()"><i class="fa-solid fa-plus"></i> Batch action</button>
+    </div>
+
+    <div *ngIf="showBatchAction">
+        <fixedlocation-view-batchAction [refreshTableFunction]="refreshTable.bind(this)">
+        </fixedlocation-view-batchAction>
+    </div>
+
+    <div class="tableDiv">
+        <data-table [domainClazz]="domainClazz"></data-table>
+    </div>
+
+
+</div>

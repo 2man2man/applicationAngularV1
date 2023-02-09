@@ -44,8 +44,9 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   @Input()
   rowClickedFunction: (row: any, router: Router) => void;
 
-  @Input()
-  multiSelection: boolean;
+  @Input() multiSelection: boolean;
+
+  @Input() singleSelection: boolean;
 
   @Output()
   selectionEmitter: EventEmitter<any[]> = new EventEmitter();
@@ -133,7 +134,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   getDisplayedColumns(): string[] {
     let result: string[] = [];
 
-    if (this.multiSelection) {
+    if (this.multiSelection || this.singleSelection) {
       result.push("select");
     }
 
@@ -166,14 +167,33 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     if (!event) {
       return;
     }
+    if (this.multiSelection) {
+      this.handleMultiSelection(event, row);
+    }
+    if (this.singleSelection) {
+      this.handleSingleSelection(event, row);
+    }
+
+    this.outputSelectionChanges();
+  }
+
+  handleMultiSelection(event: MatCheckboxChange, row: any) {
     if (event.checked) {
       this.selection.select(row);
     }
     else {
       this.selection.deselect(row);
     }
-    this.outputSelectionChanges();
   }
+
+  handleSingleSelection(event: MatCheckboxChange, row: any) {
+    this.selection.clear();
+    if (event.checked) {
+      this.selection.select(row);
+    }
+  }
+
+
 
   outputSelectionChanges(): void {
     this.selectionEmitter.emit(this.selection.selected);
