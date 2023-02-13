@@ -36,7 +36,8 @@
 
         <ng-container [matColumnDef]="column.attribute" *ngFor="let column of displayedColumns">
             <th mat-header-cell *matHeaderCellDef> {{column.displayName}} </th>
-            <td mat-cell *matCellDef="let data"> {{data[column.attribute]}} </td>
+            <!-- <td mat-cell *matCellDef="let data"> {{data[column.attribute]}} </td> -->
+            <td mat-cell *matCellDef="let data"> {{ getDynamicAttribute(data, column.attribute)}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="(getDisplayedColumns())"></tr>

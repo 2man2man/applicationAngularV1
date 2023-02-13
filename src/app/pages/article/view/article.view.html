@@ -1,0 +1,9 @@
+<div class="mainBody">
+    <div class="actionDiv">
+        <h1>Article</h1>
+        <button [routerLink]="EDITOR_PATH"> <i class="fa-solid fa-plus"></i> Create new</button>
+    </div>
+    <div class="tableDiv">
+        <data-table [domainClazz]="domainClazz" [rowClickedFunction]="handleRowClick"></data-table>
+    </div>
+</div>

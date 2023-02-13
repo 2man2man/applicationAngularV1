@@ -18,6 +18,8 @@ export class DomainSelectionSingleComponent implements OnInit, OnChanges {
   @Input()
   currentSelection: any;
 
+  @Input()
+  isReadOnly: boolean = false;
 
   @Output()
   dialogSelection: EventEmitter<any> = new EventEmitter();

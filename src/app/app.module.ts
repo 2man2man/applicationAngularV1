@@ -47,6 +47,8 @@ import { FixedLocationViewBatchActionComponent } from './pages/logisticconfig/wa
 import { DomainSelectionSingleDialogComponent } from './components/simple/domain-selection/single/dialog/domainselection.dialog.component';
 import { DomainSelectionSingleComponent } from './components/simple/domain-selection/single/domainselection.component';
 import { ProgressMonitorComponent } from './components/simple/progress/progress.monitor/progress.monitor.infinite.component';
+import { ArticleViewComponent } from './pages/article/view/article.view';
+import { ArticleEditorComponent } from './pages/article/editor/article.editor';
 
 
 
@@ -82,6 +84,8 @@ import { ProgressMonitorComponent } from './components/simple/progress/progress.
     FixedLocationViewComponent,
     FixedLocationViewBatchActionComponent,
     ProgressMonitorComponent,
+    ArticleViewComponent,
+    ArticleEditorComponent,
   ],
   imports: [
     FormsModule,

@@ -26,6 +26,12 @@ export class SideMenuComponent implements OnInit {
     displayName: "System"
   }
 
+  articleEntryVisible: boolean = true;
+  articleEntry: SideMenuEntryInterface = {
+    routerLink: "article",
+    displayName: "Article"
+  }
+
   constructor(
     private sessionService: SessionService
   ) { }

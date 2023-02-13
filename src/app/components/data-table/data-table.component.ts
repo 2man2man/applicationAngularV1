@@ -199,7 +199,15 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     this.selectionEmitter.emit(this.selection.selected);
   }
 
+  getDynamicAttribute(data: any, attribute: string): any {
 
+    let result: any = data;
+    let attributes = attribute.split(".");
+    for (let att of attributes) {
+      result = result[att];
+    }
+    return result;
+  }
 
 
 

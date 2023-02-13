@@ -1,5 +1,6 @@
 <div class="context">
     <ul>
+        <sidemenuentry *ngIf="articleEntryVisible" [entryDetails]='articleEntry'></sidemenuentry>
         <sidemenuentry *ngIf="systemEntryVisible" [entryDetails]='systemEntry'></sidemenuentry>
         <sidemenuentry *ngIf="logisticConfigEntryVisible" [entryDetails]='logisticConfigEntry'></sidemenuentry>
     </ul>

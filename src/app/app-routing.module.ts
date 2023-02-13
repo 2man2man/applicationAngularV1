@@ -14,6 +14,8 @@ import { WarehouseEditorComponent } from './pages/logisticconfig/warehouse/wareh
 import { FixedLocationTypeViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.view';
 import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehouse/fixedlocation/type/fixedlocation.type.editor';
 import { FixedLocationViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/fixedlocation.view';
+import { ArticleViewComponent } from './pages/article/view/article.view';
+import { ArticleEditorComponent } from './pages/article/editor/article.editor';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'mainPage' },
@@ -31,6 +33,8 @@ const routes: Routes = [
   { path: FixedLocationTypeViewComponent.PATH, component: FixedLocationTypeViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: FixedLocationTypeEditorComponent.PATH, component: FixedLocationTypeEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: FixedLocationViewComponent.PATH, component: FixedLocationViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: ArticleViewComponent.PATH, component: ArticleViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: ArticleEditorComponent.PATH, component: ArticleEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
 ];
 
 @NgModule({
