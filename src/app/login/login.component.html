@@ -1,12 +1,24 @@
-<body>
-    <h1> Login Seite </h1>
-    <form>
-        <div class="container">
-            <label>Benutzername:</label>
-            <input id="username" type="text" placeholder="Benutzername eingeben" name="username">
-            <label>Passwort:</label>
-            <input id="password" type="password" placeholder="Passwort eingeben" name="password">
-            <button (click)="login()" type="button">Login</button>
-        </div>
-    </form>
-</body>
+<div class="parentDiv">
+
+    <div class="brandingDiv">
+        <h1>Simple-Ship</h1>
+    </div>
+
+
+    <div class="loginDiv">
+
+        <layout-twocolumn>
+
+            <label>Username:</label>
+            <input type="text" placeholder="Username" [(ngModel)]="usernameInput" id="{{usernameId}}">
+            <label>Password:</label>
+            <input type="password" placeholder="****" [(ngModel)]="passwordInput" id="{{passwordId}}">
+
+        </layout-twocolumn>
+
+        <button class="loginButton" (click)="login()">Login</button>
+
+    </div>
+
+
+</div>

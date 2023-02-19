@@ -1,10 +1,16 @@
 <div class="parent">
 
-    <div class="sideMenuWrapper">
-        <mat-sidenav #sidenav mode="side" fixedInViewport="true" opened="true">
-            <sidemenu></sidemenu>
-        </mat-sidenav>
+    <div *ngIf="showHead" class="sideMenuWrapper">
+        <sidemenu></sidemenu>
+    </div>
 
+    <div *ngIf="showHead" class="sideMenuWrapperMobile">
+        <button mat-icon-button (click)="showMobileMenu=!showMobileMenu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div *ngIf="showMobileMenu" class="sideMenuWrapperMobileContent">
+            <sidemenu></sidemenu>
+        </div>
     </div>
 
     <div class="mainContentContainer">
@@ -13,5 +19,4 @@
         <!-- <app-messages></app-messages> -->
         <!-- </body> -->
     </div>
-
 </div>

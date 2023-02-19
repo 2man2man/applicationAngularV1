@@ -2,12 +2,19 @@
 <div class="tabContainer">
 
     <mat-tab-group>
+
         <mat-tab label="Head data">
-            <warehouse-editor-head-data [warehouseId]="warehouseId"></warehouse-editor-head-data>
+            <div class="marginDiv">
+                <warehouse-editor-head-data [warehouseId]="warehouseId"></warehouse-editor-head-data>
+            </div>
         </mat-tab>
+
         <mat-tab label="Warehouse area">
-            <warehouse-editor-warehouse-area [warehouseId]="warehouseId"></warehouse-editor-warehouse-area>
+            <div class="marginDiv">
+                <warehouse-editor-warehouse-area [warehouseId]="warehouseId"></warehouse-editor-warehouse-area>
+            </div>
         </mat-tab>
+
     </mat-tab-group>
 
 

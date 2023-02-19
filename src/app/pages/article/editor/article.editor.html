@@ -1,6 +1,7 @@
-<h1>Article</h1>
-<div class="bodyWrapper">
-  <div class="employeeAttributes">
+<div class="parent">
+
+  <h1>Article</h1>
+  <layout-twocolumn>
 
     <label>Number:</label>
     <input type="text" placeholder="Art1" [(ngModel)]="model.number" id="{{numberId}}">
@@ -15,8 +16,11 @@
     </domainselection>
 
 
-    <div class=" buttonDiv">
-      <cancel-confirm [saveFunction]="save.bind(this)" [cancelFunction]="returnToMainView.bind(this)"></cancel-confirm>
-    </div>
+  </layout-twocolumn>
 
+
+  <div class=" buttonDiv">
+    <cancel-confirm [saveFunction]="save.bind(this)" [cancelFunction]="returnToMainView.bind(this)"></cancel-confirm>
   </div>
+
+</div>

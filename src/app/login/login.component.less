@@ -1,36 +1,51 @@
-.container {    
-    padding-left: 400px;
-    padding-right: 400px; 
-   padding-top: 180px;
-      
-}   
-.button {   
-    //background-color: #4CAF50;   
-    width: 100%;  
-     //color: orange;   
-     padding: 15px;   
-     margin: 20px 0px;   
-     border: none;   
-     cursor: pointer;   
-      }   
-      
+@mobile-width: 500px;
 
-    form {   
-        border: 3px solid #f1f1f1;   
-    }   
- input[type=text], input[type=password] {   
-        width: 100%;   
-        margin: 8px 0;  
-        padding: 12px 20px;   
-        display: inline-block;   
-        border: 2px solid green;   
-        box-sizing: border-box;   
-    }  
- button:hover {   
-        opacity: 0.7;   
-    }   
+.parentDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px; 
+    margin-top: 25vh;   
 
-    Body {  
-        font-family: Calibri, Helvetica, sans-serif;  
-        //background-color: pink;  
-      }  
+    @media (max-width: @mobile-width) {
+        margin-top: 0;   
+    }
+  
+}
+
+.brandingDiv{
+    display:  flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    @media (max-width: @mobile-width) {
+        width: 100%;
+    }
+}
+ 
+.brandingDiv h1 {
+    margin: 0; 
+    padding: 0; 
+  }
+
+.loginDiv{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px ;
+    @media (max-width: @mobile-width) {
+        width: 100%;
+        margin-right: 10px;
+    }
+}
+
+.loginButton{
+      width: 100%;
+}
+ 
+input{
+    box-sizing:border-box;
+    width: 100% ;
+} 

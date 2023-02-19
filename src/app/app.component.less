@@ -1,23 +1,36 @@
+@mobile-width: 500px;
+
 .mainContentContainer {
-  // display: flex;
-  // position: relative;
-  // flex-wrap: nowrap;
-  // flex-direction: row;
-  // width: calc(100%-500px);
-  // margin-left: 250px;
-  // margin-right: 0;
   background-color: aqua;
-  padding-top: 10px;
+  padding: 10px;
   z-index: 0;
-  width: 75%;
+  width: 100%;
 }
+
+.sideMenuWrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  @media (max-width: @mobile-width) {
+    display: none;
+  }
+}
+
+.sideMenuWrapperMobile{
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  @media (max-width: @mobile-width) {
+    display: flex;
+  }
+}
+
 
 mat-sidenav {
   position: relative;
   top: 0;
   bottom: 0;
   left: 0;
-  // width: 250px;
   z-index: 1;
 }
 
@@ -26,11 +39,8 @@ mat-sidenav {
   flex-direction: row;
   gap: 10px;
 
-  @media (max-width: 850px) {
+  @media (max-width: @mobile-width) {
     flex-direction: column;
   }
 }
-
-.sideMenuWrapper{
-  // width: 25%;
-}
+ 

@@ -1,7 +1,7 @@
-<h1>Mitarbeiter</h1>
+<div class="parent">
+  <h1>Mitarbeiter</h1>
 
-<div class="bodyWrapper">
-  <div class="employeeAttributes">
+  <layout-twocolumn>
 
     <label>Vorname:</label>
     <input type="text" placeholder="Rachel" [(ngModel)]="employeeModel.firstName" id="{{firstNameId}}">
@@ -20,11 +20,10 @@
     <domainselection-multi [domainClazz]="tenantDomainClazz" (dialogSelection)="handleTenantSelection($event)"
       [currentSelection]="initialTenants">
     </domainselection-multi>
-  </div>
 
-  <div class="buttonDiv">
-    <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
-  </div>
+  </layout-twocolumn>
 
+
+  <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
 
 </div>

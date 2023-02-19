@@ -49,6 +49,8 @@ import { DomainSelectionSingleComponent } from './components/simple/domain-selec
 import { ProgressMonitorComponent } from './components/simple/progress/progress.monitor/progress.monitor.infinite.component';
 import { ArticleViewComponent } from './pages/article/view/article.view';
 import { ArticleEditorComponent } from './pages/article/editor/article.editor';
+import { LayoutTwoColumnComponent } from './components/simple/layout/twocolumn/layout.twocolumn.component';
+import { ErrorDialogComponent } from './components/simple/error-dialog/error.dialog.component';
 
 
 
@@ -86,6 +88,8 @@ import { ArticleEditorComponent } from './pages/article/editor/article.editor';
     ProgressMonitorComponent,
     ArticleViewComponent,
     ArticleEditorComponent,
+    LayoutTwoColumnComponent,
+    ErrorDialogComponent
   ],
   imports: [
     FormsModule,

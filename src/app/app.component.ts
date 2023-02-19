@@ -11,6 +11,8 @@ export class AppComponent {
 
     showHead: boolean = false;
 
+    showMobileMenu: boolean = false;
+
     constructor(private router: Router) {
 
         router.events.forEach((event) => {

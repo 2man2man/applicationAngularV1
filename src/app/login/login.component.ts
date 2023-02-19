@@ -6,6 +6,8 @@ import { ApiRequestHelper } from '../core/services/Requests/ApiRequestHelper';
 import { StringUtil } from '../util/StringUtil';
 import { TokenStorageService } from '../core/services/Requests/token.service';
 import { SessionService } from '../core/services/session.service';
+import { GuiUtil } from '../util/GuiUtil';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -16,9 +18,17 @@ import { SessionService } from '../core/services/session.service';
 
 export class LoginComponent {
 
-  public title = "Title";
+  title: "LoginComponent";
+
+
+  readonly usernameId: string = StringUtil.getRandom();
+  readonly passwordId: string = StringUtil.getRandom();
+
+  usernameInput: string;
+  passwordInput: string;
 
   constructor(
+    public dialog: MatDialog,
     private httpClient: HttpClient,
     private tokenService: TokenStorageService,
     private sessionService: SessionService,
@@ -26,8 +36,8 @@ export class LoginComponent {
 
   public login() {
 
-    let usernameAvailabe = this.checkEmptyAndSetToRed("username");
-    let passwordAvailabe = this.checkEmptyAndSetToRed("password");
+    let usernameAvailabe = this.checkEmptyAndSetToRed(this.usernameInput, this.usernameId);
+    let passwordAvailabe = this.checkEmptyAndSetToRed(this.passwordInput, this.passwordId);
 
     if (!usernameAvailabe) {
       return;
@@ -35,44 +45,46 @@ export class LoginComponent {
     else if (!passwordAvailabe) {
       return;
     }
-    let loginRequest: ApiCreateTokenRequest = new ApiCreateTokenRequest(this.httpClient);
 
-    loginRequest.username("admin").password("admin"); //TODO: use actual values 
+    Promise.resolve()
+      .then(() => { return this.sendLoginRequest() })
+      .then((result: HttpResponse<any>) => { return this.handleLoginSuccess(result) })
+      .catch((error) => {
+        GuiUtil.showErrorDialog(this.dialog, "Benutzername oder Passwort falsch!");
+      })
 
+  }
+
+  private handleLoginSuccess(value: HttpResponse<any>) {
+    const accessToken: string = value.body["access_token"];
+    const refreshToken: string = value.body["refresh_token"];
+
+    this.tokenService.saveToken(accessToken);
+    this.tokenService.saveRefreshToken(refreshToken);
+
+    this.router.navigate(['mainPage']);
+    this.sessionService.refresh();
+  }
+
+  private sendLoginRequest() {
+    let loginRequest = new ApiCreateTokenRequest(this.httpClient);
+
+    loginRequest.username(this.usernameInput).password(this.passwordInput);
+    // loginRequest.username("admin").password("admin"); //TODO: use actual values 
 
     loginRequest = ApiRequestHelper.getInstance().executeRequest(loginRequest);
-    const newLocal = loginRequest.getResponsePromise();
-    newLocal?.
-      then((value: HttpResponse<any>) => {
-        const accessToken: string = value.body["access_token"];
-        const refreshToken: string = value.body["refresh_token"];
-
-        this.tokenService.saveToken(accessToken);
-        this.tokenService.saveRefreshToken(refreshToken);
-
-        this.router.navigate(['mainPage']);
-        this.sessionService.refresh();
-
-      }).catch((value: HttpResponse<any>) => {
-        alert("Benutzername oder Passwort falsch!");
-      });
+    return loginRequest.getResponsePromise();
   }
 
 
-  private checkEmptyAndSetToRed(elemntId: string) {
-    const element = (document.getElementById(elemntId)) as HTMLInputElement;
-    if (element == null) {
-      const errorMessage = "elememt " + elemntId + " not found";
-      alert(errorMessage);
-      return false;
+
+  private checkEmptyAndSetToRed(input: string, elemntId: string): boolean {
+
+    if (!StringUtil.isEmpty(input)) {
+      return true;
     }
-    const elementContent = element.value;
-    if (StringUtil.isEmpty(elementContent)) {
-      element.style.borderColor = "red";
-      return false;
-    }
-    element.style.borderColor = "green";
-    return true;
+    GuiUtil.setBorderToRed(elemntId);
+    return false;
   }
 }
 

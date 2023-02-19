@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WarehouseEditorComponent {
 
-  warehouseId: number;
+  warehouseId: number = 0;
 
   constructor(
     private httpClient: HttpClient,

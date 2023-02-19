@@ -1,6 +1,7 @@
-<h1>Mandant</h1>
-<div class="bodyWrapper">
-  <div class="employeeAttributes">
+<div class="parent">
+
+  <h1>Fixed location type</h1>
+  <layout-twocolumn>
 
     <label>Number:</label>
     <input type="text" placeholder="LT1" [(ngModel)]="model.number" id="{{numberId}}">
@@ -9,9 +10,10 @@
     <label>Name:</label>
     <input type="text" placeholder="Shelf" [(ngModel)]="model.name" id="{{nameId}}">
 
+  </layout-twocolumn>
 
-    <div class="buttonDiv">
-      <cancel-confirm [saveFunction]="save.bind(this)" [cancelFunction]="returnToMainView.bind(this)"></cancel-confirm>
-    </div>
+  <cancel-confirm [saveFunction]="save.bind(this)" [cancelFunction]="returnToMainView.bind(this)"></cancel-confirm>
 
-  </div>
+
+
+</div>

@@ -1,5 +1,6 @@
-<div class="bodyWrapper">
-  <div class="employeeAttributes">
+<div class="parent">
+
+  <layout-twocolumn>
 
     <label>Number:</label>
     <input type="text" placeholder="WH1" [(ngModel)]="model.number" id="{{numberId}}">
@@ -8,9 +9,10 @@
     <label>Name:</label>
     <input type="text" placeholder="Warehouse" [(ngModel)]="model.name" id="{{nameId}}">
 
+  </layout-twocolumn>
 
-    <div class="buttonDiv">
-      <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
-    </div>
+  <cancel-confirm [saveFunction]="save.bind(this)"></cancel-confirm>
 
-  </div>
+
+
+</div>
