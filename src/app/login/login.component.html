@@ -10,10 +10,11 @@
         <layout-twocolumn>
 
             <label>Username:</label>
-            <input type="text" placeholder="Username" [(ngModel)]="usernameInput" id="{{usernameId}}">
+            <input type="text" placeholder="Username" [(ngModel)]="usernameInput" id="{{usernameId}}"
+                (keyup.enter)="login()">
             <label>Password:</label>
-            <input type="password" placeholder="****" [(ngModel)]="passwordInput" id="{{passwordId}}">
-
+            <input type="password" placeholder="****" [(ngModel)]="passwordInput" id="{{passwordId}}"
+                (keyup.enter)="login()">
         </layout-twocolumn>
 
         <button class="loginButton" (click)="login()">Login</button>
