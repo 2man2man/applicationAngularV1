@@ -12,6 +12,7 @@ export class EmployeeModel {
     userName: string;
     password: string;
     tenants: TenantModel[] = [];
+    warehouse: any;
 
     constructor() {
     }
@@ -26,7 +27,8 @@ export class EmployeeModel {
             "lastName": this.lastName,
             "userName": this.userName,
             "password": this.password,
-            "tenants": tenantNumbers
+            "tenants": tenantNumbers,
+            "warehouseId": this.warehouse.id
         }
     }
 
@@ -62,6 +64,7 @@ export class EmployeeModel {
         model.firstName = json["firstName"];
         model.lastName = json["lastName"];
         model.userName = json["userName"];
+        model.warehouse = json["warehouse"];
 
         let tenantNumbers: string[] = json["tenants"];
         tenantNumbers.sort();
@@ -75,8 +78,6 @@ export class EmployeeModel {
         }
     }
 
-    public static async test(testValue: string): Promise<string> {
-        return testValue + testValue;
-    }
+
 
 }

@@ -3,6 +3,7 @@ import { EmployeeCellView } from "./EmployeeCellView";
 import { FixedLocationTypeCellView } from "./FixedLocationTypeCellView";
 import { TenantCellView } from "./TenantCellView";
 import { WarehouseAreaCellView } from "./WarehouseAreaCellView";
+import { WarehouseCellView } from "./WarehouseCellView";
 
 export interface CellViewDefinition {
 
@@ -24,6 +25,9 @@ export class CellViewFactory {
         }
         else if (clazz == DomainClazzEnum.WarehouseArea) {
             return new WarehouseAreaCellView();
+        }
+        else if (clazz == DomainClazzEnum.Warehouse) {
+            return new WarehouseCellView();
         }
         else {
             throw new Error(clazz + " is not supported!");

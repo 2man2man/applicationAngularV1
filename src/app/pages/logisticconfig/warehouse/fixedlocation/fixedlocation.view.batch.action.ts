@@ -7,6 +7,7 @@ import { DomainClazzEnum } from 'src/app/core/DomainClazzEnum';
 import { ApiPostRequest } from 'src/app/core/services/Requests/ApiPostRequest';
 import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
 import { GuiUtil } from 'src/app/util/GuiUtil';
+import { PrintUtils } from 'src/app/util/PrintUtil';
 import { StringUtil } from 'src/app/util/StringUtil';
 
 @Component({
@@ -80,7 +81,8 @@ export class FixedLocationViewBatchActionComponent {
       .then(() => { return this.checInput() })
       .then(() => { this.openProgressDialog() })
       .then((value) => { return this.sendRequest() })
-      .then((value) => { this.refreshTableFunction() })
+      .then((value) => { this.handleResponse(value) })
+      .then(() => { this.refreshTableFunction() })
       .catch(error => {
         console.log(error)
         alert("This failed: " + error)
@@ -91,6 +93,7 @@ export class FixedLocationViewBatchActionComponent {
   private openProgressDialog(): void {
     this.dialogRef = this.dialog.open(ProgressMonitorComponent);
   }
+
   private closeProgressDialog(): void {
     if (this.dialogRef)
       this.dialogRef.close();
@@ -124,6 +127,10 @@ export class FixedLocationViewBatchActionComponent {
     else if (this.model.mode == BatchActionMode.Create_and_Update) {
       this.checkCreateAndUpdate(missingFields);
     }
+    else if (this.model.mode == BatchActionMode.Print) {
+      this.checkPrint(missingFields);
+    }
+
 
     if (missingFields.length == 0) {
       return true;
@@ -205,8 +212,23 @@ export class FixedLocationViewBatchActionComponent {
     this.checkIdentifier(missingFields);
   }
 
+  private checkPrint(missingFields: string[]) {
+    this.checkIdentifier(missingFields);
+  }
+
   private checkCreateAndUpdate(missingFields: string[]) {
     this.checkCreate(missingFields);
+  }
+
+  private handleResponse(response: HttpResponse<any>) {
+    if (this.model.mode == BatchActionMode.Print) {
+      this.handleReponsePrint(response);
+    }
+
+  }
+  private handleReponsePrint(response: HttpResponse<any>) {
+    const base64string = response.body["base64String"];
+    PrintUtils.openBase64PdfInNewWindow(base64string);
   }
 
 
@@ -267,5 +289,6 @@ export enum BatchActionMode {
   Update = "Update",
   Create_and_Update = "Create_and_Update",
   Delete = "Delete",
+  Print = "Print",
 }
 

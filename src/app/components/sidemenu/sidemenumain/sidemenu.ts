@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiGetRequest } from 'src/app/core/services/Requests/ApiGetRequest';
 import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
 import { SessionService } from 'src/app/core/services/session.service';
+import { LogisticExecutionSelectionComponent } from 'src/app/pages/logisticexecution/selection/logisticexecution.selection';
 import { SideMenuEntryInterface } from '../SideMenuEntryInterface';
 
 
@@ -13,6 +14,12 @@ import { SideMenuEntryInterface } from '../SideMenuEntryInterface';
 })
 export class SideMenuComponent implements OnInit {
 
+
+  logisticExecutionEntryVisible: boolean = true;
+  logisticExecutionEntry: SideMenuEntryInterface = {
+    routerLink: LogisticExecutionSelectionComponent.PATH,
+    displayName: "Logistic execution"
+  }
 
   logisticConfigEntryVisible: boolean = false;
   logisticConfigEntry: SideMenuEntryInterface = {
@@ -25,6 +32,13 @@ export class SideMenuComponent implements OnInit {
     routerLink: "system",
     displayName: "System"
   }
+
+  stockEntryVisible: boolean = true;
+  stockEntry: SideMenuEntryInterface = {
+    routerLink: "stock",
+    displayName: "Stock"
+  }
+
 
   articleEntryVisible: boolean = true;
   articleEntry: SideMenuEntryInterface = {

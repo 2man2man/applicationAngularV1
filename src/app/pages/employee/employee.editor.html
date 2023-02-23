@@ -16,6 +16,11 @@
     <label>Passwort:</label>
     <input type="text" placeholder="*****" [(ngModel)]="employeeModel.password" id="{{passwordId}}">
 
+    <label>Warehouse:</label>
+    <domainselection [domainClazz]="warehouseDomainClazz" (dialogSelection)="handleWarehouseSelection($event)"
+      [currentSelection]="employeeModel.warehouse">
+    </domainselection>
+
     <label>Mandanten:</label>
     <domainselection-multi [domainClazz]="tenantDomainClazz" (dialogSelection)="handleTenantSelection($event)"
       [currentSelection]="initialTenants">

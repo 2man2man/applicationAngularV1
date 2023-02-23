@@ -51,6 +51,9 @@ import { ArticleViewComponent } from './pages/article/view/article.view';
 import { ArticleEditorComponent } from './pages/article/editor/article.editor';
 import { LayoutTwoColumnComponent } from './components/simple/layout/twocolumn/layout.twocolumn.component';
 import { ErrorDialogComponent } from './components/simple/error-dialog/error.dialog.component';
+import { StockViewComponent } from './pages/stock/view/stock.view';
+import { LogisticExecutionSelectionComponent } from './pages/logisticexecution/selection/logisticexecution.selection';
+import { LogisticExecutionStorageComponent } from './pages/logisticexecution/storage/logisticexecution.storage';
 
 
 
@@ -89,7 +92,10 @@ import { ErrorDialogComponent } from './components/simple/error-dialog/error.dia
     ArticleViewComponent,
     ArticleEditorComponent,
     LayoutTwoColumnComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    StockViewComponent,
+    LogisticExecutionSelectionComponent,
+    LogisticExecutionStorageComponent
   ],
   imports: [
     FormsModule,

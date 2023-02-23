@@ -25,11 +25,13 @@ export class EmployeeEditorComponent {
   readonly passwordId: string = "EmployeeEditorComponent_passwordId";
 
   readonly tenantDomainClazz: DomainClazzEnum = DomainClazzEnum.Tenant;
+  readonly warehouseDomainClazz: DomainClazzEnum = DomainClazzEnum.Warehouse;
 
   idExistingEmployee: number = 0;
   employeeModel: EmployeeModel = EmployeeModel.createEmtpy();
 
   initialTenants: TenantModel[];
+
 
   constructor(
     private httpClient: HttpClient,
@@ -74,6 +76,10 @@ export class EmployeeEditorComponent {
     }
   }
 
+  handleWarehouseSelection(data: any): void {
+    this.employeeModel.warehouse = data;
+  }
+
 
   public save(): void {
 
@@ -112,6 +118,11 @@ export class EmployeeEditorComponent {
       missingFields.push("userName");
       GuiUtil.setBorderToRed(this.userNameId);
     }
+
+    if (!this.employeeModel.warehouse) { //TODO: add color to gui element
+      missingFields.push("warehouse");
+    }
+
     if (!this.isUpdate() && StringUtil.isEmpty(this.employeeModel.password)) {
       missingFields.push("password");
       GuiUtil.setBorderToRed(this.passwordId);

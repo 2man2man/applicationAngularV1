@@ -16,6 +16,9 @@ import { FixedLocationTypeEditorComponent } from './pages/logisticconfig/warehou
 import { FixedLocationViewComponent } from './pages/logisticconfig/warehouse/fixedlocation/fixedlocation.view';
 import { ArticleViewComponent } from './pages/article/view/article.view';
 import { ArticleEditorComponent } from './pages/article/editor/article.editor';
+import { StockViewComponent } from './pages/stock/view/stock.view';
+import { LogisticExecutionSelectionComponent } from './pages/logisticexecution/selection/logisticexecution.selection';
+import { LogisticExecutionStorageComponent } from './pages/logisticexecution/storage/logisticexecution.storage';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'mainPage' },
@@ -35,6 +38,9 @@ const routes: Routes = [
   { path: FixedLocationViewComponent.PATH, component: FixedLocationViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: ArticleViewComponent.PATH, component: ArticleViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: ArticleEditorComponent.PATH, component: ArticleEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: StockViewComponent.PATH, component: StockViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: LogisticExecutionSelectionComponent.PATH, component: LogisticExecutionSelectionComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: LogisticExecutionStorageComponent.PATH, component: LogisticExecutionStorageComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
 ];
 
 @NgModule({

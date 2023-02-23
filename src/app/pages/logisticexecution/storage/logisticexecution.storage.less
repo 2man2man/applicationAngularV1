@@ -1,0 +1,37 @@
+@mobile-width: 500px;
+
+
+.parent{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px;
+
+    @media (max-width: @mobile-width) {
+        align-items: center;
+    }
+}
+
+
+.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    @media (max-width: @mobile-width) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+}
+
+.button {
+    width: 100px;
+
+    @media (max-width: @mobile-width) {
+        width: 100%;
+        height: 50px;
+    }
+}

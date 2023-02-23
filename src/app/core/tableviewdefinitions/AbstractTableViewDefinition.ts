@@ -5,6 +5,7 @@ import { ArticleTableView } from "./ArticleTableView";
 import { EmployeeTableView } from "./EmployeeTableView";
 import { FixedLocationTableView } from "./FixedLocationTableView";
 import { FixedLocationTypeTableView } from "./FixedLocationTypeTableView";
+import { StockTableView } from "./StockTableView";
 import { TenantTableView } from "./TenantTableView";
 import { WarehouseAreaTableView } from "./WarehouseAreaTableView";
 import { WarehouseTableView } from "./WarehouseTableView";
@@ -39,6 +40,9 @@ export class TableViewFactory {
         }
         else if (clazz == DomainClazzEnum.Article) {
             return new ArticleTableView();
+        }
+        else if (clazz == DomainClazzEnum.Stock) {
+            return new StockTableView();
         }
         else {
             throw new Error(clazz + " is not supported!");

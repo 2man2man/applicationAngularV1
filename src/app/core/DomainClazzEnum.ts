@@ -5,5 +5,6 @@ export enum DomainClazzEnum {
     WarehouseArea,
     FixedLocation,
     FixedLocationType,
-    Article
+    Article,
+    Stock
 }
