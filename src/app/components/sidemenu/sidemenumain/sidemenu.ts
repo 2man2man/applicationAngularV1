@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiGetRequest } from 'src/app/core/services/Requests/ApiGetRequest';
 import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
 import { SessionService } from 'src/app/core/services/session.service';
+import { CustomerOrderViewComponent } from 'src/app/pages/customerorder/customerorder.view/customerorder.view.component';
 import { LogisticExecutionSelectionComponent } from 'src/app/pages/logisticexecution/selection/logisticexecution.selection';
 import { SideMenuEntryInterface } from '../SideMenuEntryInterface';
 
@@ -44,6 +45,12 @@ export class SideMenuComponent implements OnInit {
   articleEntry: SideMenuEntryInterface = {
     routerLink: "article",
     displayName: "Article"
+  }
+
+  customerOrderEntryVisible: boolean = true;
+  customerOrderEntry: SideMenuEntryInterface = {
+    routerLink: CustomerOrderViewComponent.PATH,
+    displayName: "Customer order"
   }
 
   constructor(

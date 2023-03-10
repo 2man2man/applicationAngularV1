@@ -1,0 +1,14 @@
+<layout-twocolumn>
+
+    <label>Number:</label>
+    <input type="text" placeholder="Create automatically" [(ngModel)]="model.number" id="{{numberId}}">
+
+
+
+    <label>Tenant:</label>
+    <domainselection [domainClazz]="tenantDomainClazz" (dialogSelection)="model.tenant = $event "
+        [currentSelection]="model.tenant" id="{{tenantGuiId}}" [isReadOnly]="false">
+    </domainselection>
+
+
+</layout-twocolumn>

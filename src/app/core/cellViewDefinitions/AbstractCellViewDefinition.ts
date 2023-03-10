@@ -1,5 +1,7 @@
 import { DomainClazzEnum } from "../DomainClazzEnum";
+import { ArticleCellView } from "./ArticleCellView";
 import { EmployeeCellView } from "./EmployeeCellView";
+import { FixedLocationCellView } from "./FixedLocationCellView";
 import { FixedLocationTypeCellView } from "./FixedLocationTypeCellView";
 import { TenantCellView } from "./TenantCellView";
 import { WarehouseAreaCellView } from "./WarehouseAreaCellView";
@@ -29,8 +31,14 @@ export class CellViewFactory {
         else if (clazz == DomainClazzEnum.Warehouse) {
             return new WarehouseCellView();
         }
+        else if (clazz == DomainClazzEnum.FixedLocation) {
+            return new FixedLocationCellView();
+        }
+        else if (clazz == DomainClazzEnum.Article) {
+            return new ArticleCellView();
+        }
         else {
-            throw new Error(clazz + " is not supported!");
+            throw new Error(DomainClazzEnum[clazz] + " is not supported!");
         }
     }
 }

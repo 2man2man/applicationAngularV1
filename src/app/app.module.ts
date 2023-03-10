@@ -46,7 +46,6 @@ import { FixedLocationViewComponent } from './pages/logisticconfig/warehouse/fix
 import { FixedLocationViewBatchActionComponent } from './pages/logisticconfig/warehouse/fixedlocation/fixedlocation.view.batch.action';
 import { DomainSelectionSingleDialogComponent } from './components/simple/domain-selection/single/dialog/domainselection.dialog.component';
 import { DomainSelectionSingleComponent } from './components/simple/domain-selection/single/domainselection.component';
-import { ProgressMonitorComponent } from './components/simple/progress/progress.monitor/progress.monitor.infinite.component';
 import { ArticleViewComponent } from './pages/article/view/article.view';
 import { ArticleEditorComponent } from './pages/article/editor/article.editor';
 import { LayoutTwoColumnComponent } from './components/simple/layout/twocolumn/layout.twocolumn.component';
@@ -54,6 +53,10 @@ import { ErrorDialogComponent } from './components/simple/error-dialog/error.dia
 import { StockViewComponent } from './pages/stock/view/stock.view';
 import { LogisticExecutionSelectionComponent } from './pages/logisticexecution/selection/logisticexecution.selection';
 import { LogisticExecutionStorageComponent } from './pages/logisticexecution/storage/logisticexecution.storage';
+import { ProgressDialogComponent } from './components/simple/progress/dialog/progress.dialog.component';
+import { CustomerOrderViewComponent } from './pages/customerorder/customerorder.view/customerorder.view.component';
+import { CustomerOrderEditorComponent } from './pages/customerorder/customerorder.editor/customerorder.editor.component';
+import { CutomerorderEditorHeaddataComponent } from './pages/customerorder/customerorder.editor/headdata/cutomerorder.editor.headdata.component';
 
 
 
@@ -88,14 +91,17 @@ import { LogisticExecutionStorageComponent } from './pages/logisticexecution/sto
     FixedLocationTypeEditorComponent,
     FixedLocationViewComponent,
     FixedLocationViewBatchActionComponent,
-    ProgressMonitorComponent,
     ArticleViewComponent,
     ArticleEditorComponent,
     LayoutTwoColumnComponent,
     ErrorDialogComponent,
     StockViewComponent,
     LogisticExecutionSelectionComponent,
-    LogisticExecutionStorageComponent
+    LogisticExecutionStorageComponent,
+    ProgressDialogComponent,
+    CustomerOrderViewComponent,
+    CustomerOrderEditorComponent,
+    CutomerorderEditorHeaddataComponent
   ],
   imports: [
     FormsModule,

@@ -12,7 +12,7 @@ import { TableViewFactory } from 'src/app/core/tableviewdefinitions/AbstractTabl
 import { StringUtil } from 'src/app/util/StringUtil';
 import { DataTableFilterComponent } from './data-table-filter/data-table-filter.component';
 import { DataTableColumDefinition } from './DataTableColumDefinition';
-import { DataTableDataSource } from './DataTableDataSource';
+import { DataTableDataSourceServer } from './DataTableDataSourceServer';
 import { DataTableFilterDefinition } from './DataTableFilterDefinition';
 import { DataTableFixedFilterDefinition } from './DataTableFixedFilterDefinition';
 
@@ -63,7 +63,8 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   pageSize = 10;
   pageSizeOptions: number[] = [10, 50, 100];
 
-  dataSourceImpl: DataTableDataSource;
+  dataSourceImpl: DataTableDataSourceServer;
+
   @ViewChild(MatSort)
   sort: MatSort;
 
@@ -76,7 +77,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     let viewProps = new TableViewFactory().create(this.domainClazz);
     this.displayedColumns = viewProps.getDisplayedColumns();
     this.displayedFilters = viewProps.getDisplayedFilters();
-    this.dataSourceImpl = new DataTableDataSource(this.httpClient, viewProps.getEndpoint());
+    this.dataSourceImpl = new DataTableDataSourceServer(this.httpClient, viewProps.getEndpoint());
   }
 
 

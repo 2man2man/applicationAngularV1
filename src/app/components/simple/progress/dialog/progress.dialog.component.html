@@ -1,0 +1,9 @@
+<div class="parent">
+    <div *ngIf="!isComplete" class="progress-container">
+        <div class="progress-bar" style="background-color: green;"></div>
+    </div>
+    <div *ngIf="isComplete" class="complete-div">
+        <i class="fa-solid fa-check" style="color: white;"></i>
+        <p style="color: white">Done</p>
+    </div>
+</div>

@@ -1,8 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, Injector, Input, NgModule } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
-import { ProgressMonitorComponent } from 'src/app/components/simple/progress/progress.monitor/progress.monitor.infinite.component';
+import { ProgressDialogComponent } from 'src/app/components/simple/progress/dialog/progress.dialog.component';
 import { DomainClazzEnum } from 'src/app/core/DomainClazzEnum';
 import { ApiPostRequest } from 'src/app/core/services/Requests/ApiPostRequest';
 import { ApiRequestHelper } from 'src/app/core/services/Requests/ApiRequestHelper';
@@ -39,7 +38,7 @@ export class FixedLocationViewBatchActionComponent {
 
   @Input() refreshTableFunction: () => void;
 
-  dialogRef: MatDialogRef<ProgressMonitorComponent>;
+  dialogRef: MatDialogRef<ProgressDialogComponent>;
 
   constructor(
     private httpClient: HttpClient,
@@ -91,7 +90,7 @@ export class FixedLocationViewBatchActionComponent {
   }
 
   private openProgressDialog(): void {
-    this.dialogRef = this.dialog.open(ProgressMonitorComponent);
+    this.dialogRef = this.dialog.open(ProgressDialogComponent);
   }
 
   private closeProgressDialog(): void {

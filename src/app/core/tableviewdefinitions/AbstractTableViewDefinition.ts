@@ -2,6 +2,7 @@ import { DataTableColumDefinition } from "src/app/components/data-table/DataTabl
 import { DataTableFilterDefinition } from "src/app/components/data-table/DataTableFilterDefinition";
 import { DomainClazzEnum } from "../DomainClazzEnum";
 import { ArticleTableView } from "./ArticleTableView";
+import { CustomerOrderTableView } from "./CustomerOrderTableView";
 import { EmployeeTableView } from "./EmployeeTableView";
 import { FixedLocationTableView } from "./FixedLocationTableView";
 import { FixedLocationTypeTableView } from "./FixedLocationTypeTableView";
@@ -43,6 +44,9 @@ export class TableViewFactory {
         }
         else if (clazz == DomainClazzEnum.Stock) {
             return new StockTableView();
+        }
+        else if (clazz == DomainClazzEnum.CustomerOrder) {
+            return new CustomerOrderTableView();
         }
         else {
             throw new Error(clazz + " is not supported!");

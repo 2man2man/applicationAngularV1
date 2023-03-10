@@ -19,6 +19,8 @@ import { ArticleEditorComponent } from './pages/article/editor/article.editor';
 import { StockViewComponent } from './pages/stock/view/stock.view';
 import { LogisticExecutionSelectionComponent } from './pages/logisticexecution/selection/logisticexecution.selection';
 import { LogisticExecutionStorageComponent } from './pages/logisticexecution/storage/logisticexecution.storage';
+import { CustomerOrderEditorComponent } from './pages/customerorder/customerorder.editor/customerorder.editor.component';
+import { CustomerOrderViewComponent } from './pages/customerorder/customerorder.view/customerorder.view.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'mainPage' },
@@ -41,6 +43,8 @@ const routes: Routes = [
   { path: StockViewComponent.PATH, component: StockViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: LogisticExecutionSelectionComponent.PATH, component: LogisticExecutionSelectionComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
   { path: LogisticExecutionStorageComponent.PATH, component: LogisticExecutionStorageComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: CustomerOrderEditorComponent.PATH, component: CustomerOrderEditorComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
+  { path: CustomerOrderViewComponent.PATH, component: CustomerOrderViewComponent, data: { requiresLogin: true }, canActivate: [LoginAccessGuard] },
 ];
 
 @NgModule({

@@ -1,5 +1,34 @@
 <div class="parent">
 
-    <h1>TEST</h1>
+    <h1>Storage</h1>
+
+    <layout-twocolumn style="width: 100%; grid-auto-rows: 1fr;">
+
+        <label>Article:</label>
+        <domainselection [domainClazz]="articleDomainClazz" (dialogSelection)="model.article=$event"
+            [currentSelection]="model.article">
+        </domainselection>
+
+
+
+
+        <label>Location:</label>
+        <domainselection [domainClazz]="fixedLocationDomainClazz" (dialogSelection)="model.setFixedLocation($event)"
+            [currentSelection]="model.fixedLocation">
+        </domainselection>
+
+        <label>Quantity:</label>
+        <div class="quantityComp">
+            <input type="number" [(ngModel)]="model.quantity" style="flex: 1;">
+            <!-- <button (click)="model.changeQuantity(1)"><i class="fa-solid fa-plus"></i></button>
+            <button (click)="model.changeQuantity(-1)"><i class="fa-solid fa-minus"></i></button> -->
+            <button (mousedown)="startChangeQuantiy(true)"><i class="fa-solid fa-plus"></i></button>
+            <button (mousedown)="startChangeQuantiy(false)"><i class="fa-solid fa-minus"></i></button>
+        </div>
+
+    </layout-twocolumn>
+
+    <button (click)="store()" style="width: 100%;"><i class="fa-solid fa-plus"></i> Store</button>
+    <button (click)="model.reset()" style="width: 100%;"><i class="fa-solid fa-xmark"></i> Reset</button>
 
 </div>

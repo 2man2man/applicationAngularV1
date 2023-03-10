@@ -1,12 +1,11 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { ApiPostRequest } from "src/app/core/services/Requests/ApiPostRequest";
 import { ApiRequestHelper } from "src/app/core/services/Requests/ApiRequestHelper";
 
 
-export class DataTableDataSource implements DataSource<any> {
+export class DataTableDataSourceServer implements DataSource<any> {
 
     private readonly endpoint: string;
 
@@ -77,7 +76,7 @@ export class DataTableDataSource implements DataSource<any> {
     }
 }
 
-class SearchParams {
+export class SearchParams {
 
     private page: number;
     private limit: number;

@@ -1,6 +1,7 @@
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ErrorDialogComponent } from "../components/simple/error-dialog/error.dialog.component";
-import { ProgressMonitorComponent } from "../components/simple/progress/progress.monitor/progress.monitor.infinite.component";
+import { ProgressDialogComponent } from "../components/simple/progress/dialog/progress.dialog.component";
+import { SleepUtils } from "./SleepUtils";
 
 export class GuiUtil {
 
@@ -24,13 +25,23 @@ export class GuiUtil {
     }
 
 
-    public static openProgressDialog(dialog: MatDialog): MatDialogRef<ProgressMonitorComponent> {
-        return dialog.open(ProgressMonitorComponent);
+    public static openProgressDialog(dialog: MatDialog): MatDialogRef<ProgressDialogComponent> {
+        return dialog.open(ProgressDialogComponent);
     }
 
-    public static closeProgressDialog(dialogRef: MatDialogRef<ProgressMonitorComponent>) {
+    public static showProgressDialogComplete(dialogRef: MatDialogRef<ProgressDialogComponent>, durationMS: number): Promise<any> {
+        return Promise.resolve()
+            .then(() => dialogRef.componentInstance.setComplete())
+            .then(() => SleepUtils.sleep(durationMS));
+    }
+
+    public static closeProgressDialog(dialogRef: MatDialogRef<ProgressDialogComponent>) {
         if (dialogRef) {
-            return dialogRef.close();
+            try {
+                return dialogRef.close();
+            } catch (error) {
+                return dialogRef;
+            }
         }
     }
 
